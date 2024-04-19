@@ -17,6 +17,7 @@ const Stopwatch = () => {
     useEffect(() => {
         if(time >= mode.maximumTime) {
             setState(states.finished);
+            setTime(mode.maximumTime);
         }
 
         let intervalId;
