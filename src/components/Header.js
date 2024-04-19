@@ -1,9 +1,9 @@
 import ToggleTheme from "./ToggleTheme";
 import Logo from "./Logo";
-import { useMode } from "./ModeContext";
+import { useMode } from "../context/ModeContext";
 import ToggleOptionsMenu from "./ToggleOptionsMenu";
 import Clock from 'react-live-clock';
-import { formatDateWithLeadingZeros } from "./timeUtils";
+import { formatDateWithLeadingZeros } from "../utils/timeUtils";
 
 
 export default function Header() {

@@ -1,9 +1,9 @@
-import Stopwatch from './Stopwatch';
-import { keepTheme } from './themes';
+import Stopwatch from './components/Stopwatch';
+import { keepTheme } from './utils/themes';
 import { useEffect } from 'react';
-import Header from './Header';
-import { ModeProvider } from './ModeContext';
-import { SettingsProvider } from './SettingsContext';
+import Header from './components/Header';
+import { ModeProvider } from './context/ModeContext';
+import { SettingsProvider } from './context/SettingsContext';
 
 function App() {
   useEffect(() => {

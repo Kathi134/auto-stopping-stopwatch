@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from "react";
 import ModeSelector from './ModeSelector';
-import { useMode } from "./ModeContext";
-import { displayFromMillis } from './timeUtils';
-import { useSettings } from "./SettingsContext";
+import { useMode } from "../context/ModeContext";
+import { displayFromMillis } from '../utils/timeUtils';
+import { useSettings } from "../context/SettingsContext";
 
 const states = {"running":0, "finished":1, "paused":2, "zero":3}
 

@@ -1,5 +1,5 @@
-import MODES from "./modes";
-import { useMode } from "./ModeContext";
+import MODES from "../model/modes";
+import { useMode } from "../context/ModeContext";
 
 export default function ModeSelector() {
     const { mode, setMode } = useMode();

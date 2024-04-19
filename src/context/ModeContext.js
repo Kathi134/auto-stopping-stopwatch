@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import MODES from './modes';
+import MODES from '../model/modes';
 
 const ModeContext = createContext();
 

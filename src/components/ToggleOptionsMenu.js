@@ -1,5 +1,5 @@
 import { IoMdSettings } from "react-icons/io";
-import { useSettings } from "./SettingsContext";
+import { useSettings } from "../context/SettingsContext";
 
 export default function ToggleOptionsMenu() {
     const {settings, setSettings} = useSettings();
