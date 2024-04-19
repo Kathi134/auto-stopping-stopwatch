@@ -9,11 +9,6 @@ import { formatDateWithLeadingZeros } from "../utils/timeUtils";
 export default function Header() {
     const {mode} = useMode();
 
-    
-      
-      const formattedDate = formatDateWithLeadingZeros(new Date());
-      console.log(formattedDate);
-
     return(<>
         <div className="header-container">
             <div className="horizontal-container">
