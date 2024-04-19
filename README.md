@@ -8,4 +8,4 @@
 ## usage
 - cd `puzzle-stop-watch`
 - `npm start`
-- use at (localhost)[localhost:3000]
+- use at [localhost](localhost:3000)
