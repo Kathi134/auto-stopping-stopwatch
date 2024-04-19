@@ -35,7 +35,7 @@ const Stopwatch = () => {
         }
         else if(state === states.paused) {
             setState(states.running)
-            setBeginningTime(new Date() - beginningTime)
+            setBeginningTime(new Date() - time)
         }
     };
     const reset = () => {
