@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+
+.theme-dark {
+  --background: #000;
+  --default-color: #fff;
+  --stopwatch-time-color: #fff;
+  --stopwatch-button-color: #fff;
+  --stopwatch-reset-button-background: red;
+  --stopwatch-toggle-button-background: green;
+}
+
+.theme-light {
+  --background: #fff;
+  --default-color: #000;
+  --stopwatch-time-color: #000;
+  --stopwatch-button-color: #fff;
+  --stopwatch-reset-button-background: red;
+  --stopwatch-toggle-button-background: green;
+}
+
+
+body {
+  background-color: var(--background);
+  color: var(--default-color)
+}
+
+.stopwatch-time-container {
+  text-align: center;
+  color: var(--stopwatch-time-color);
+  margin: 30vh 0px;
+}
+
+.stopwatch-time {
+  font-size: 100px;
+}
+
+.stopwatch-end {
+  font-size: 15px;
+}
+
+.stopwatch-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.stopwatch-buttons button {
+  margin: 20px;
+  border: none;
+  padding: 10px 30px; 
+  cursor: pointer;
+  color: var(--stopwatch-button-color);
+}
+
+select {
+  border: none;
+  padding: 10px 5px; 
+  cursor: pointer;
+  color: #000;
+}
+
+.stopwatch-buttons button:first-child {
+  background-color: var(--stopwatch-toggle-button-background);
+}
+
+.stopwatch-buttons button:last-child {
+  background-color: var(--stopwatch-reset-button-background);
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.logo {
+  height: 8vh;
+}
+
+.header-container {
+  margin: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.horizontal-container {
+  display: flex;
+  align-items: center;
+}
+
+.padding-left {
+  padding-left: 1vh;
+}
+
+.padding-right {
+  padding-right: 1vh;
+}
+
+.select {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  padding-right: 3vh;
+}
+
+.vertical-container {
+  display: flex;
+  flex-direction: column;
+}
