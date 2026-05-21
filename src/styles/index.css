@@ -9,6 +9,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+table {
+  width: 100%;
+
+}
+
+.bottom-border {
+  border-bottom: 1px solid white;
+}
 
 .theme-dark {
   --background: #000;
@@ -48,6 +56,12 @@ body {
   font-size: 30px;
 }
 
+.stopwatch-judge {
+  font-size: 4rem;
+  background-color: red;
+  border: 0.5rem solid darkred;
+}
+
 .stopwatch-buttons {
   display: flex;
   justify-content: center;
@@ -56,14 +70,14 @@ body {
 .stopwatch-buttons button {
   margin: 20px;
   border: none;
-  padding: 10px 30px; 
+  padding: 10px 30px;
   cursor: pointer;
   color: var(--stopwatch-button-color);
 }
 
 select {
   border: none;
-  padding: 10px 5px; 
+  padding: 10px 5px;
   cursor: pointer;
   color: #000;
 }
@@ -123,4 +137,14 @@ select {
 .vertical-container {
   display: flex;
   flex-direction: column;
+}
+
+.small-input {
+  width: 4rem;
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+  align-items: center;
 }
