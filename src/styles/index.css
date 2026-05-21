@@ -37,15 +37,15 @@ body {
 .stopwatch-time-container {
   text-align: center;
   color: var(--stopwatch-time-color);
-  margin: 30vh 0px;
+  margin: 5vh 0px;
 }
 
 .stopwatch-time {
-  font-size: 100px;
+  font-size: 250px;
 }
 
 .stopwatch-end {
-  font-size: 15px;
+  font-size: 30px;
 }
 
 .stopwatch-buttons {
@@ -81,7 +81,7 @@ select {
 }
 
 .logo {
-  height: 8vh;
+  height: 20vh;
 }
 
 .header-container {
@@ -89,6 +89,10 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.title-content {
+  font-size: 30px;
 }
 
 .horizontal-container {

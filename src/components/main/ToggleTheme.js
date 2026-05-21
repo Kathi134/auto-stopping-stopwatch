@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { setTheme } from '../utils/themes';
+import { setTheme } from '../../utils/themes';
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 function ToggleTheme() {
@@ -22,14 +22,14 @@ function ToggleTheme() {
             setTheme('theme-dark');
             setTogClass('dark')
         }
-    }  
+    }
 
     return (
         <div className="cursor">
             {
                 togClass === "dark"
-                ? <MdLightMode className="default" onClick={handleOnClick}/>
-                : <MdDarkMode className="default" onClick={handleOnClick}/>
+                    ? <MdLightMode className="default" onClick={handleOnClick} />
+                    : <MdDarkMode className="default" onClick={handleOnClick} />
             }
         </div>
     )

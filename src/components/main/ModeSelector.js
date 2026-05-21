@@ -1,5 +1,5 @@
-import MODES from "../model/modes";
-import { useMode } from "../context/ModeContext";
+import MODES from "../../model/modes";
+import { useMode } from "../../context/ModeContext";
 
 export default function ModeSelector() {
     const { mode, setMode } = useMode();
@@ -10,6 +10,6 @@ export default function ModeSelector() {
                 {MODES.map(m => <option value={JSON.stringify(m)} key={m.name} >{m.name}</option>)}
             </select>
         </div>
-    </> 
+    </>
     );
 }
