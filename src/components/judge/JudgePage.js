@@ -6,6 +6,7 @@ import { displayFromMillis } from "../../utils/timeUtils";
 
 const undefinedTable = -1;
 const undefinedId = -1;
+const undefinedPosition = -1;
 const undefinedName = "Nicht zugeordnet."
 
 export default function JudgePage({ foo }) {
@@ -36,6 +37,7 @@ export default function JudgePage({ foo }) {
         setPendingResults(prev => [...prev, {
             id: ctr,
             time: time,
+            position: undefinedPosition,
             table: undefinedTable,
             competitorName: undefinedName,
             competitorId: undefinedId
@@ -67,13 +69,24 @@ export default function JudgePage({ foo }) {
         });
     }, [getCompetitorForTable]);
 
+    const setPositionAtIdToValue = useCallback((id, value) => {
+        setPendingResults(prev => {
+            return prev?.map(x => {
+                if (x.id === id) {
+                    return { ...x, position: value };
+                }
+                return x;
+            })
+        });
+    }, []);
+
     // delete a pending result
     const deleteResult = useCallback((id) => {
         setPendingResults(prev => prev.filter(x => x.id !== id));
     }, []);
 
     // persist result data in backend
-    const storeResult = useCallback((competitorId, time, id) => {
+    const storeResult = useCallback((competitorId, time, position, id) => {
         postCompetitionResult({ competitorId, time })
             .then(x => {
                 console.log(x);
@@ -113,9 +126,10 @@ export default function JudgePage({ foo }) {
                     {pendingResults?.map((x) =>
                         <tr key={x.id}>
                             <td>{displayFromMillis(x.time)}</td>
-                            <td><input className="small-input" type="number" value={x.table} onChange={e => setTableAtIdToValue(x.id, Number(e.target.value))} /></td>
+                            <td><input name="table-nr" className="small-input" type="number" value={x.table} onChange={e => setTableAtIdToValue(x.id, Number(e.target.value))} /></td>
                             <td className="bottom-border">{x.competitorName}</td>
-                            <td><button disabled={x.table === undefinedTable} onClick={() => storeResult(x.competitorId, x.time, x.id)}>💾</button></td>
+                            <td><input name="position" className="small-input" type="number" value={x.position} onChange={e => setPositionAtIdToValue(x.id, Number(e.target.value))} /></td>
+                            <td><button disabled={x.table === undefinedTable} onClick={() => storeResult(x.competitorId, x.time, x.position, x.id)}>💾</button></td>
                             <td><button onClick={() => deleteResult(x.id)}>🗑️</button></td>
                         </tr>
                     )}
