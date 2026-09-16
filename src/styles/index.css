@@ -18,6 +18,11 @@ table {
   border-bottom: 1px solid white;
 }
 
+.top-border {
+  border-top: 1px solid white;
+  padding-top: 8px;
+}
+
 .theme-dark {
   --background: #000;
   --default-color: #fff;
@@ -147,4 +152,16 @@ select {
 .center {
   text-align: center;
   align-items: center;
+}
+
+.gap-05 {
+  gap: 0.5rem;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.space-between {
+  justify-content: space-between;
 }

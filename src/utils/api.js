@@ -25,6 +25,14 @@ const getCompetitonStart = async ({ id }) => {
         .catch(err => console.error(err));
 }
 
+const getCompetititonData = async ({ competitionId }) => {
+    const options = { method: 'GET' };
+
+    return fetch(`${API}/competitions/${competitionId}`, options)
+        .then(response => response.json())
+        .catch(err => console.error(err));
+}
+
 const getCompetitorsForCompetition = async ({ competitionId }) => {
     const options = { method: 'GET' };
 
@@ -47,4 +55,4 @@ const postCompetitionResult = async ({ competitorId, time }) => {
     return fetch(`${API}/results/`, options);
 }
 
-export { postCompetitionStart, getCompetitonStart, getCompetitorsForCompetition, postCompetitionResult };
+export { postCompetitionStart, getCompetitonStart, getCompetititonData, postCompetitionResult };

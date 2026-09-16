@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import MODES from "../../model/modes";
-import { getCompetitonStart, getCompetitorsForCompetition, postCompetitionResult } from "../../utils/api";
+import { getCompetitonStart, getCompetitorsForCompetition, postCompetitionResult, getCompetititonData } from "../../utils/api";
 import Timer from "./Timer";
 import { displayFromMillis } from "../../utils/timeUtils";
 
@@ -11,6 +11,7 @@ const undefinedName = "Nicht zugeordnet."
 
 export default function JudgePage({ foo }) {
     const [competitors, setCompetitors] = useState([]);
+    const [puzzles, setPuzzles] = useState([]);
 
     const [mode, setMode] = useState(MODES[0]);
     const [startingTime, setStartingTime] = useState(0);
@@ -28,8 +29,13 @@ export default function JudgePage({ foo }) {
         console.log("updating mode")
         getCompetitonStart({ id: mode.id })
             .then(x => setStartingTime(new Date(x?.starting_time)));
-        getCompetitorsForCompetition({ competitionId: mode.id })
-            .then(x => setCompetitors(x.competitors));
+        // getCompetitorsForCompetition({ competitionId: mode.id })
+        //     .then(x => setCompetitors(x.competitors));
+        getCompetititonData({ competitionId: mode.id })
+            .then(x => {
+                setPuzzles(x.puzzles);
+                setCompetitors(x.competitors);
+            });
     }, [mode.id])
 
     // new result
@@ -73,16 +79,33 @@ export default function JudgePage({ foo }) {
         setPendingResults(prev => {
             return prev?.map(x => {
                 if (x.id === id) {
-                    return { ...x, position: value };
+                    return {
+                        ...x,
+                        position: value,
+                        puzzleUrl: puzzles.find(x => x.position === value)?.image
+                    };
                 }
                 return x;
             })
         });
-    }, []);
+    }, [puzzles]);
 
     // delete a pending result
     const deleteResult = useCallback((id) => {
         setPendingResults(prev => prev.filter(x => x.id !== id));
+    }, []);
+
+    // edit a pending result
+    const increaseTime = useCallback((id) => {
+        setPendingResults(prev => prev.map(x => {
+            return { ...x, time: x.id === id ? x.time + 500 : x.time }
+        }));
+    }, []);
+
+    const decreaseTime = useCallback((id) => {
+        setPendingResults(prev => prev.map(x => {
+            return { ...x, time: x.id === id ? x.time - 500 : x.time }
+        }));
     }, []);
 
     // persist result data in backend
@@ -119,18 +142,35 @@ export default function JudgePage({ foo }) {
         <div className="center">
             <span>Gesammelte Ergebnisse:</span>
             <table>
-                <thead>
-                    <tr><th>Zeit</th><th>Tisch</th><th>Name</th><th>💾</th><th>🗑️</th></tr>
-                </thead>
                 <tbody>
                     {pendingResults?.map((x) =>
                         <tr key={x.id}>
-                            <td>{displayFromMillis(x.time)}</td>
-                            <td><input name="table-nr" className="small-input" type="number" value={x.table} onChange={e => setTableAtIdToValue(x.id, Number(e.target.value))} /></td>
-                            <td className="bottom-border">{x.competitorName}</td>
-                            <td><input name="position" className="small-input" type="number" value={x.position} onChange={e => setPositionAtIdToValue(x.id, Number(e.target.value))} /></td>
-                            <td><button disabled={x.table === undefinedTable} onClick={() => storeResult(x.competitorId, x.time, x.position, x.id)}>💾</button></td>
-                            <td><button onClick={() => deleteResult(x.id)}>🗑️</button></td>
+                            <td><div className="vertical-container top-border">
+                                <div className="horizontal-container space-between">
+                                    <div className="horizontal-container gap-05">
+                                        <button onClick={() => decreaseTime(x.id)}>-0.5s</button>
+                                        {displayFromMillis(x.time)}
+                                        <button onClick={() => increaseTime(x.id)}>+0.5s</button>
+                                    </div>
+                                    <button disabled={true}>Fehlteil (+5s)</button>
+                                    <button disabled={x.table === undefinedTable} onClick={() => storeResult(x.competitorId, x.time, x.position, x.id)}>💾</button>
+                                    <button onClick={() => deleteResult(x.id)}>🗑️</button>
+                                </div>
+                                <div className="horizontal-container">
+                                    <div className="horizontal-container gap-05">
+                                        <span>Tisch:</span>
+                                        <input name="table-nr" className="small-input" type="number" value={x.table} onChange={e => setTableAtIdToValue(x.id, Number(e.target.value))} />
+                                        <span>{x.competitorName}</span>
+                                    </div>
+                                </div>
+                                <div className="horizontal-container">
+                                    <div className="horizontal-container gap-05">
+                                        <span>Puzzle:</span>
+                                        <input name="puzzle-position" className="small-input" type="number" value={x.position} onChange={e => setPositionAtIdToValue(x.id, Number(e.target.value))} />
+                                        <img height="50" src={x.puzzleUrl} />
+                                    </div>
+                                </div>
+                            </div></td>
                         </tr>
                     )}
                 </tbody>

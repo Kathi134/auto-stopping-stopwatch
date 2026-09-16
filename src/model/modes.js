@@ -11,7 +11,8 @@ const MODES = [
     // { id: 16, name: "Zufallspaarmodus-Relay", maximumTime: "2700000" },
     // { id: 15, name: "Blindmodus", maximumTime: "5400000" },
 
-    { id: 18, name: "Paar-Marathon", maximumTime: "36000000" },
+    { id: 7, name: "Marathon 2025", maximumTime: "36000000" },
+    { id: 19, name: "Solo Marathon", maximumTime: "36000000" },
 
 ]
 
