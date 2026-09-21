@@ -141,12 +141,12 @@ select:focus {
 
 .stopwatch-judge {
     margin: 0.4rem 0;
-    font-size: 3.8rem;
+    font-size: 3.5rem;
     color: var(--default-dark);
     background-color: var(--accent);
     border: 0.5rem solid var(--accent-dark);
     border-radius: 20px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 
@@ -320,11 +320,6 @@ button:disabled {
         background-color 0.2s ease;
 }
 
-
-.small-input::-webkit-inner-spin-button,
-.small-input::-webkit-outer-spin-button {
-    opacity: 0.5;
-}
 
 /* ---------------------------------------------------------
    Wettbewerbername
