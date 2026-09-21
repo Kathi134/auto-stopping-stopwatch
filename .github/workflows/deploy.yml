@@ -20,11 +20,9 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        working-directory: auto-stopping-stopwatch
         run: npm install
 
       - name: Build React app
-        working-directory: auto-stopping-stopwatch
         run: npm run build
 
       - name: Deploy to server
