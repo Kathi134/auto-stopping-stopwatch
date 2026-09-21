@@ -1,15 +1,23 @@
 import { useCallback, useEffect, useState } from "react";
 import MODES from "../../model/modes";
-import { getCompetitonStart, getCompetitorsForCompetition, postCompetitionResult, getCompetititonData } from "../../utils/api";
+import { getCompetitonStart, postCompetitionResult, getCompetititonData } from "../../utils/api";
 import Timer from "./Timer";
 import { displayFromMillis } from "../../utils/timeUtils";
+import "../../styles/judge.css"
+import ToggleTheme from "../main/ToggleTheme";
+import JudgeModeSelection from "./JudgeModeSelection";
+import ToggleOptionsMenu from "../main/ToggleOptionsMenu";
+import { useSettings } from "../../context/SettingsContext";
 
 const undefinedTable = -1;
 const undefinedId = -1;
 const undefinedPosition = -1;
-const undefinedName = "Nicht zugeordnet."
+const undefinedName = "nicht zugeordnet."
+const marathon = true;
 
 export default function JudgePage({ foo }) {
+    const { settings } = useSettings();
+
     const [competitors, setCompetitors] = useState([]);
     const [puzzles, setPuzzles] = useState([]);
 
@@ -19,11 +27,13 @@ export default function JudgePage({ foo }) {
     const [pendingResults, setPendingResults] = useState([]);
     const [ctr, setCtr] = useState(0);
 
+
     // debufg
     useEffect(() => {
         // console.log(pendingResults);
     }, [pendingResults])
 
+    // TODO: richtig in komponente auslagern
     // init starting time and competitorList wrt selected comp
     useEffect(() => {
         console.log("updating mode")
@@ -121,60 +131,72 @@ export default function JudgePage({ foo }) {
     }, [deleteResult]);
 
     return (<div>
-        <h1 className="center">Ergebniserfassung</h1>
+        <header>
+            <h1 className="center">Ergebniserfassung</h1>
 
-        <div className="center">
-            <div>Ergebniserfassung für Modus:</div>
-            <select name="mode" onChange={(e) => setMode(JSON.parse(e.target.value))} value={JSON.stringify(mode)}>
-                {MODES.map(m => <option value={JSON.stringify(m)} key={m.name} >{m.name} (id: {m.id})</option>)}
-            </select>
+            <div className="horizontal-container" id="toggle-btns" >
+                <ToggleTheme />
+                <ToggleOptionsMenu />
+            </div>
+        </header>
 
-            <div>gestartet: {startingTime.toLocaleString()}</div>
-        </div>
+        {settings.showOptionsMenu &&
+            <JudgeModeSelection startingTime={startingTime} mode={mode} setMode={setMode} />
+        }
 
-        <div>
-            <div className="stopwatch-time-container">
+        <div className="card">
+            <div className="vertical-container center">
                 <span>Hier klicken, um eine Zeit zu erfassen:</span>
                 <Timer mode={mode} initBeginningTime={startingTime} onClick={addResultToPending} />
             </div>
         </div>
 
         <div className="center">
-            <span>Gesammelte Ergebnisse:</span>
-            <table>
-                <tbody>
-                    {pendingResults?.map((x) =>
-                        <tr key={x.id}>
-                            <td><div className="vertical-container top-border">
-                                <div className="horizontal-container space-between">
-                                    <div className="horizontal-container gap-05">
-                                        <button onClick={() => decreaseTime(x.id)}>-0.5s</button>
-                                        {displayFromMillis(x.time)}
-                                        <button onClick={() => increaseTime(x.id)}>+0.5s</button>
+            <div id="sub-header">Gesammelte Ergebnisse:</div>
+            <div className="padded">
+                <table>
+                    <tbody>
+                        {pendingResults?.map((x) =>
+                            <tr key={x.id}>
+                                <td><div className="vertical-container top-border">
+                                    <div className="horizontal-container space-between">
+                                        <div className="horizontal-container gap-05">
+                                            <button className="adj-time-btn" onClick={() => decreaseTime(x.id)}>-0.5s</button>
+                                            {displayFromMillis(x.time)}
+                                            <button className="adj-time-btn" onClick={() => increaseTime(x.id)}>+0.5s</button>
+                                        </div>
+                                        {marathon
+                                            ? <span className="thirdary-text">Bei Fehlteilen 5s warten, bevor das nächste Puzzle gegeben wird.</span>
+                                            : <button className="adj-time-btn" disabled={true}>Fehlteil (+5s)</button>
+                                        }
                                     </div>
-                                    <button disabled={true}>Fehlteil (+5s)</button>
-                                    <button disabled={x.table === undefinedTable} onClick={() => storeResult(x.competitorId, x.time, x.position, x.id)}>💾</button>
-                                    <button onClick={() => deleteResult(x.id)}>🗑️</button>
-                                </div>
-                                <div className="horizontal-container">
-                                    <div className="horizontal-container gap-05">
-                                        <span>Tisch:</span>
-                                        <input name="table-nr" className="small-input" type="number" value={x.table} onChange={e => setTableAtIdToValue(x.id, Number(e.target.value))} />
-                                        <span>{x.competitorName}</span>
+                                    <div className="horizontal-container top-sdy-border">
+                                        <div className="horizontal-container gap-05">
+                                            <span>Tisch:</span>
+                                            <input name="table-nr" className="small-input" type="number" value={x.table} onChange={e => setTableAtIdToValue(x.id, Number(e.target.value))} />
+                                            <span className="competitor-name">{x.competitorName}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="horizontal-container">
-                                    <div className="horizontal-container gap-05">
-                                        <span>Puzzle:</span>
-                                        <input name="puzzle-position" className="small-input" type="number" value={x.position} onChange={e => setPositionAtIdToValue(x.id, Number(e.target.value))} />
-                                        <img height="50" src={x.puzzleUrl} />
+                                    <div className="horizontal-container top-sdy-border">
+                                        <div className="horizontal-container gap-05">
+                                            <span>Puzzle:</span>
+                                            <input name="puzzle-position" className="small-input" type="number" value={x.position} onChange={e => setPositionAtIdToValue(x.id, Number(e.target.value))} />
+                                            {x.puzzleUrl
+                                                ? <img height="50" src={x.puzzleUrl} alt={undefinedName} className="puzzle-image" />
+                                                : <span className="competitor-name">{undefinedName}</span>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </div></td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+                                    <div className="horizontal-container top-sdy-border btn-column">
+                                        <button className="save-btn" disabled={x.table === undefinedTable} onClick={() => storeResult(x.competitorId, x.time, x.position, x.id)}>💾</button>
+                                        <button className="delete-btn" onClick={() => deleteResult(x.id)}>🗑️</button>
+                                    </div>
+                                </div></td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>)
+    </div >)
 }

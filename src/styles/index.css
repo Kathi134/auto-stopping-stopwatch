@@ -15,12 +15,16 @@ table {
 }
 
 .bottom-border {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--default-color);
 }
 
 .top-border {
-  border-top: 1px solid white;
+  border-top: 1px solid var(--default-color);
   padding-top: 8px;
+}
+
+.top-sdy-border {
+  border-top: 1px solid grey;
 }
 
 .theme-dark {
@@ -61,11 +65,7 @@ body {
   font-size: 30px;
 }
 
-.stopwatch-judge {
-  font-size: 4rem;
-  background-color: red;
-  border: 0.5rem solid darkred;
-}
+
 
 .stopwatch-buttons {
   display: flex;
@@ -164,4 +164,8 @@ select {
 
 .space-between {
   justify-content: space-between;
+}
+
+.bottom-margin {
+  margin-bottom: 2rem;
 }

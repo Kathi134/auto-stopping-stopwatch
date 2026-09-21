@@ -1,0 +1,802 @@
+/* =========================================================
+   Judge Page – Modern Styling
+   ========================================================= */
+
+:root {
+    --default-dark: #1e293b;
+    --accent: #def0f6;
+    --accent-dark: lightblue;
+    --success: rgb(22, 163, 74);
+    --success-light: #a8ecb2;
+    --danger: #dc2626;
+    --danger-light: #fecaca;
+    --surface: #ffffff;
+    --surface-hover: #f8fafc;
+    --border: #e2e8f0;
+    --muted: #64748b;
+    --disabled: rgb(225, 229, 237);
+    --shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.secondary-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
+
+.thirdary-text {
+    color: var(--muted);
+    font-size: 0.7rem;
+}
+
+/* ---------------------------------------------------------
+   Grundlayout
+   --------------------------------------------------------- */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Fira Sans",
+        "Droid Sans",
+        "Helvetica Neue",
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background: #f8fafc;
+
+    color: var(--default-dark);
+}
+
+
+
+/* ---------------------------------------------------------
+   Überschrift
+   --------------------------------------------------------- */
+
+header {
+    display: flex;
+}
+
+#toggle-btns {
+    position: absolute;
+    top: 2.2rem;
+    right: 0.4rem;
+    gap: 0.2rem;
+}
+
+h1 {
+    margin: 0;
+    padding: 2rem 1rem 1rem;
+
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+
+    color: var(--default-dark);
+}
+
+/* ---------------------------------------------------------
+   Modus-Auswahl
+   --------------------------------------------------------- */
+
+select {
+    min-width: 260px;
+
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background-color: var(--surface);
+    color: var(--default-dark);
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+select:hover {
+    border-color: var(--accent-dark);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* ---------------------------------------------------------
+   Stopwatch
+   --------------------------------------------------------- */
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    color: var(--muted);
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.stopwatch-judge {
+    margin: 0.4rem 0;
+    font-size: 3.8rem;
+    color: var(--default-dark);
+    background-color: var(--accent);
+    border: 0.5rem solid var(--accent-dark);
+    border-radius: 20px;
+    overflow: auto;
+}
+
+
+/* ---------------------------------------------------------
+   Gesammelte Ergebnisse
+   --------------------------------------------------------- */
+
+#sub-header {
+    font-weight: bold;
+    margin-top: 2rem;
+    ;
+}
+
+.padded {
+    margin: 0rem 1rem;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+}
+
+/* Jede Ergebnis-Zeile */
+
+table td {
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    color: var(--muted);
+
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+   Ergebnis-Karte
+   --------------------------------------------------------- */
+
+.vertical-container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.top-border {
+    border-top: none;
+    padding: 0;
+}
+
+/* Erste Zeile */
+
+.top-border>.horizontal-container:first-child {
+    padding: 0.9rem 1rem;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ---------------------------------------------------------
+   Buttons
+   --------------------------------------------------------- */
+
+button {
+    padding: 0.55rem 0.85rem;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--surface-hover);
+    color: #334155;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.1s ease,
+        box-shadow 0.15s ease;
+}
+
+
+button:disabled {
+    cursor: not-allowed;
+    border-color: var(--muted);
+    background-color: var(--disabled);
+}
+
+/* Zeit +/- */
+.adj-time-btn {
+    min-width: 55px;
+}
+
+.adj-time-btn:hover {
+    box-shadow: 0 2px 6px rgba(176, 186, 179, 0.46);
+}
+
+/* Speicherbutton */
+.save-btn {
+    background: var(--success-light);
+    border-color: var(--success);
+    color: var(--default-color);
+    min-width: 42px;
+}
+
+.save-btn:hover:not(:disabled) {
+    background: var(--success-light);
+    border-color: var(--success);
+    box-shadow: 0 2px 6px rgba(22, 163, 74, 0.46);
+}
+
+/* Löschen */
+.delete-btn {
+    background: var(--danger-light);
+    border-color: var(--danger);
+    min-width: 42px;
+}
+
+.delete-btn:hover {
+    background: var(--danger-light);
+    border-color: var(--danger);
+    box-shadow: 0 2px 6px rgba(163, 24, 22, 0.46);
+}
+
+
+/* ---------------------------------------------------------
+   Ergebnisdetails
+   --------------------------------------------------------- */
+
+.top-sdy-border {
+    border-top: 1px solid var(--border);
+    background-color: var(--surface-hover);
+    padding: 0.8rem 1rem;
+}
+
+.top-sdy-border .horizontal-container {
+    min-height: 38px;
+}
+
+/* Labels */
+
+.top-sdy-border span:first-child {
+    min-width: 50px;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+   Input-Felder
+   --------------------------------------------------------- */
+
+.small-input {
+    width: 4rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    text-align: center;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: white;
+    color: #0f172a;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.small-input::-webkit-inner-spin-button,
+.small-input::-webkit-outer-spin-button {
+    opacity: 0.5;
+}
+
+/* ---------------------------------------------------------
+   Wettbewerbername
+   --------------------------------------------------------- */
+
+.competitor-name {
+    margin-left: 0.25rem;
+    color: #334155;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+   Puzzle
+   --------------------------------------------------------- */
+
+.puzzle-image {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-left: 0.3rem;
+    object-fit: contain;
+}
+
+/* ---------------------------------------------------------
+   last row
+   --------------------------------------------------------- */
+
+
+.btn-column {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    h1 {
+        font-size: 1.7rem;
+        padding-top: 1.5rem;
+    }
+
+    .stopwatch-time-container {
+        margin: 2rem 0.75rem;
+        padding: 1.5rem 0.75rem;
+
+        border-radius: 15px;
+    }
+
+    .stopwatch-time {
+        font-size: clamp(4rem, 20vw, 7rem);
+    }
+
+    .top-border>.horizontal-container:first-child {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .top-border>.horizontal-container:first-child {
+        justify-content: center;
+    }
+
+    .top-sdy-border {
+        padding: 0.7rem;
+    }
+
+    select {
+        width: calc(100% - 2rem);
+        max-width: 350px;
+    }
+}
+
+/* ---------------------------------------------------------
+   Dark Mode
+   --------------------------------------------------------- */
+
+.theme-dark {
+    --background: #0f172a;
+    --default-color: #f8fafc;
+    --stopwatch-time-color: #f8fafc;
+    --stopwatch-button-color: #fff;
+    --stopwatch-reset-button-background: #dc2626;
+    --stopwatch-toggle-button-background: #16a34a;
+
+    --surface: #1e293b;
+    --surface-hover: #334155;
+    --border: #334155;
+
+    --default-dark: #f8fafc;
+    --accent: #def0f6;
+    --accent-dark: lightblue;
+    --success: rgb(22, 163, 74);
+    --success-light: #a8ecb2;
+    --danger: #dc2626;
+    --danger-light: #fecaca;
+
+    --muted: #64748b;
+    --disabled: rgb(225, 229, 237);
+    --shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.theme-dark {
+    /* Grundfarben */
+    --default-dark: #e2e8f0;
+
+    --accent: #263b43;
+    --accent-dark: #79b6c9;
+
+    --surface: #1e293b;
+    --surface-hover: #273548;
+
+    --border: #3b4a5f;
+
+    --muted: #94a3b8;
+
+    --disabled: #374151;
+
+    /* Statusfarben */
+    --success: #22c55e;
+    --success-light: #14532d;
+
+    --danger: #ef4444;
+    --danger-light: #4c1d1d;
+
+    /* Schatten etwas stärker, da dunkle Flächen weniger Kontrast haben */
+    --shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    --shadow-hover: 0 8px 26px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ---------------------------------------------------------
+   Grundlayout
+   --------------------------------------------------------- */
+
+.theme-dark body {
+    background:
+        linear-gradient(135deg, #0f172a 0%, #111827 100%);
+
+    color: var(--default-dark);
+}
+
+
+/* ---------------------------------------------------------
+   Überschrift
+   --------------------------------------------------------- */
+
+.theme-dark h1 {
+    color: #f8fafc;
+}
+
+
+/* ---------------------------------------------------------
+   Secondary / Thirdary Text
+   --------------------------------------------------------- */
+
+.theme-dark .secondary-text {
+    color: #94a3b8;
+}
+
+.theme-dark .thirdary-text {
+    color: #94a3b8;
+}
+
+
+/* ---------------------------------------------------------
+   Cards
+   --------------------------------------------------------- */
+
+.theme-dark .card {
+    background: rgba(30, 41, 59, 0.82);
+
+    border-color: rgba(71, 85, 105, 0.7);
+
+    box-shadow: var(--shadow);
+
+    color: #cbd5e1;
+}
+
+
+/* ---------------------------------------------------------
+   Select
+   --------------------------------------------------------- */
+
+.theme-dark select {
+    background-color: #1e293b;
+
+    color: #e2e8f0;
+
+    border-color: #475569;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.theme-dark select:hover {
+    border-color: var(--accent-dark);
+}
+
+.theme-dark select:focus {
+    border-color: var(--accent-dark);
+
+    box-shadow:
+        0 0 0 3px rgba(121, 182, 201, 0.15);
+}
+
+
+/* ---------------------------------------------------------
+   Stopwatch / Timer
+   --------------------------------------------------------- */
+
+.theme-dark .stopwatch-judge {
+    color: #f8fafc;
+
+    background-color: #263b43;
+
+    border-color: #79b6c9;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ---------------------------------------------------------
+   Gesammelte Ergebnisse
+   --------------------------------------------------------- */
+
+.theme-dark #sub-header {
+    color: #f1f5f9;
+}
+
+
+/* ---------------------------------------------------------
+   Ergebnis-Karten
+   --------------------------------------------------------- */
+
+.theme-dark table td {
+    background: #1e293b;
+
+    border-color: #334155;
+
+    box-shadow: var(--shadow);
+
+    color: #cbd5e1;
+}
+
+.theme-dark table tr:hover td {
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* ---------------------------------------------------------
+   Erste Zeile jeder Ergebnis-Karte
+   --------------------------------------------------------- */
+
+.theme-dark .top-border>.horizontal-container:first-child {
+    background: #172235;
+
+    border-bottom-color: #334155;
+}
+
+
+/* ---------------------------------------------------------
+   Buttons allgemein
+   --------------------------------------------------------- */
+
+.theme-dark button {
+    background: #334155;
+
+    border-color: #475569;
+
+    color: #e2e8f0;
+}
+
+.theme-dark button:hover:not(:disabled) {
+    background: #475569;
+
+    border-color: #64748b;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ---------------------------------------------------------
+   +/- Zeit
+   --------------------------------------------------------- */
+
+.theme-dark .adj-time-btn {
+    background: #334155;
+
+    border-color: #475569;
+
+    color: #e2e8f0;
+}
+
+.theme-dark .adj-time-btn:hover:not(:disabled) {
+    background: #475569;
+
+    border-color: #64748b;
+}
+
+
+/* ---------------------------------------------------------
+   Disabled Button
+   --------------------------------------------------------- */
+
+.theme-dark button:disabled {
+    background-color: #374151;
+
+    border-color: #4b5563;
+
+    color: #9ca3af;
+
+    opacity: 0.7;
+}
+
+
+/* ---------------------------------------------------------
+   Save Button
+   --------------------------------------------------------- */
+
+.theme-dark .save-btn {
+    background: #14532d;
+
+    border-color: #22c55e;
+
+    color: #bbf7d0;
+}
+
+.theme-dark .save-btn:hover:not(:disabled) {
+    background: #166534;
+
+    border-color: #4ade80;
+
+    box-shadow:
+        0 2px 8px rgba(34, 197, 94, 0.25);
+}
+
+
+/* ---------------------------------------------------------
+   Delete Button
+   --------------------------------------------------------- */
+
+.theme-dark .delete-btn {
+    background: #4c1d1d;
+
+    border-color: #ef4444;
+
+    color: #fecaca;
+}
+
+.theme-dark .delete-btn:hover:not(:disabled) {
+    background: #7f1d1d;
+
+    border-color: #f87171;
+
+    box-shadow:
+        0 2px 8px rgba(239, 68, 68, 0.25);
+}
+
+
+/* ---------------------------------------------------------
+   Ergebnisdetails
+   --------------------------------------------------------- */
+
+.theme-dark .top-sdy-border {
+    background-color: #1a2638;
+
+    border-top-color: #334155;
+}
+
+
+/* ---------------------------------------------------------
+   Labels
+   --------------------------------------------------------- */
+
+.theme-dark .top-sdy-border span:first-child {
+    color: #94a3b8;
+}
+
+
+/* ---------------------------------------------------------
+   Input-Felder
+   --------------------------------------------------------- */
+
+.theme-dark .small-input {
+    background: #0f172a;
+
+    color: #f1f5f9;
+
+    border-color: #475569;
+}
+
+.theme-dark .small-input:hover {
+    background: #111c2d;
+
+    border-color: #64748b;
+}
+
+.theme-dark .small-input:focus {
+    outline: none;
+
+    background: #172235;
+
+    border-color: var(--accent-dark);
+
+    box-shadow:
+        0 0 0 3px rgba(121, 182, 201, 0.15);
+}
+
+
+/* ---------------------------------------------------------
+   Wettbewerber
+   --------------------------------------------------------- */
+
+.theme-dark .competitor-name {
+    color: #e2e8f0;
+}
+
+
+/* ---------------------------------------------------------
+   Info bei fehlendem Puzzle
+   --------------------------------------------------------- */
+
+.theme-dark .thirdary-text {
+    color: #94a3b8;
+}
+
+
+/* ---------------------------------------------------------
+   Header / Toggle Buttons
+   --------------------------------------------------------- */
+
+.theme-dark #toggle-btns {
+    color: #e2e8f0;
+}
+
+
+/* React Icons
+   Falls .default bereits an anderer Stelle definiert ist,
+   überschreibt diese Regel nur die Farbe im Dark Mode.
+*/
+
+.theme-dark #toggle-btns .default {
+    color: #e2e8f0;
+}
+
+.theme-dark #toggle-btns .default:hover {
+    color: #79b6c9;
+}
+
+
+/* ---------------------------------------------------------
+   Mobile
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .theme-dark .card {
+        background: rgba(30, 41, 59, 0.9);
+    }
+
+    .theme-dark table td {
+        border-color: #334155;
+    }
+}

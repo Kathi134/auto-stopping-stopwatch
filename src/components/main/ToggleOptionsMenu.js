@@ -6,6 +6,7 @@ export default function ToggleOptionsMenu() {
 
     function toggleOptionsMenu() {
         setSettings({ ...settings, showOptionsMenu: !settings.showOptionsMenu })
+        console.log("set")
     }
 
     return (<div>

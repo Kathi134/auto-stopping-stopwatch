@@ -33,7 +33,7 @@ const Timer = ({ mode, initBeginningTime = 0, onClick }) => {
     }, [state, initBeginningTime, mode.maximumTime]);
 
     return (
-        <div>
+        <div className="vertical-container">
             <div className="stopwatch-judge" onClick={() => onClick(time)}>
                 {displayFromMillis(time)}
             </div>

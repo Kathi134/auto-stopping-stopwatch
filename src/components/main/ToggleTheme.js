@@ -3,7 +3,7 @@ import { setTheme } from '../../utils/themes';
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 function ToggleTheme() {
-    const [togClass, setTogClass] = useState('dark');
+    const [togClass, setTogClass] = useState('light');
     let theme = localStorage.getItem('theme');
 
     useEffect(() => {
