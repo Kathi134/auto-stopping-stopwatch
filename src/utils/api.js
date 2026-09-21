@@ -1,7 +1,7 @@
 import { displayFromMillisWithoutMillis } from "./timeUtils";
 
-// const API = "http://185.249.198.58/api";     
-const API = "https://puzzle-meisterschaft.de/api";
+const API = "http://185.249.198.58:8083/api";
+// const API = "https://puzzle-meisterschaft.de/api";
 
 const postCompetitionStart = ({ time, id }) => {
     const options = {
@@ -47,7 +47,7 @@ const postCompetitionResult = async ({ competitorId, puzzleId, time }) => {
         })
     };
 
-    return fetch(`${API}/results/`, options);
+    return fetch(`${API}/results`, options);
 }
 
 export { postCompetitionStart, getCompetitonStart, getCompetititonData, postCompetitionResult };
