@@ -34,4 +34,4 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
-          rsync -e "ssh -i private_key.pem -o StrictHostKeyChecking=no" -avz --delete auto-stopping-stopwatch/build/ $SERVER_USER@$SERVER_HOST:$SERVER_PATH
+          rsync -e "ssh -i private_key.pem -o StrictHostKeyChecking=no" -avz --delete build/ $SERVER_USER@$SERVER_HOST:$SERVER_PATH
