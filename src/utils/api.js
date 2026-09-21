@@ -1,6 +1,7 @@
 import { displayFromMillisWithoutMillis } from "./timeUtils";
 
-const API = "http://185.249.198.58:8083/api";
+// const API = "http://185.249.198.58/api";     
+const API = "https://puzzle-meisterschaft.de/api";
 
 const postCompetitionStart = ({ time, id }) => {
     const options = {
@@ -33,13 +34,6 @@ const getCompetititonData = async ({ competitionId }) => {
         .catch(err => console.error(err));
 }
 
-const getCompetitorsForCompetition = async ({ competitionId }) => {
-    const options = { method: 'GET' };
-
-    return fetch(`${API}/competitions/${competitionId}/getCompetitorsWithTableNrs`, options)
-        .then(response => response.json())
-        .catch(err => console.error(err));
-};
 
 const postCompetitionResult = async ({ competitorId, time }) => {
     const options = {
