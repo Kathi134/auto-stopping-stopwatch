@@ -35,7 +35,7 @@ const getCompetititonData = async ({ competitionId }) => {
 }
 
 
-const postCompetitionResult = async ({ competitorId, time }) => {
+const postCompetitionResult = async ({ competitorId, puzzleId, time }) => {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -43,6 +43,7 @@ const postCompetitionResult = async ({ competitorId, time }) => {
             "resultType": "time",
             "value": displayFromMillisWithoutMillis(time),
             "competitorId": competitorId,
+            "puzzleId": puzzleId,
         })
     };
 

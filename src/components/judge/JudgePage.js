@@ -120,7 +120,7 @@ export default function JudgePage({ foo }) {
 
     // persist result data in backend
     const storeResult = useCallback((competitorId, time, position, id) => {
-        postCompetitionResult({ competitorId, time })
+        postCompetitionResult({ competitorId, puzzleId: position, time })
             .then(x => {
                 console.log(x);
                 if (x.status === 200)

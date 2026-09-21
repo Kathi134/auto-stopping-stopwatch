@@ -3,13 +3,13 @@ import React, { createContext, useContext, useState } from 'react';
 const SettingsContext = createContext();
 
 class Settings {
-   constructor(showOptionsMenu) {
+  constructor(showOptionsMenu) {
     this.showOptionsMenu = showOptionsMenu;
-   }
+  }
 }
 
 export const SettingsProvider = ({ children }) => {
-  const [settings, setSettings] = useState(new Settings(true));
+  const [settings, setSettings] = useState(new Settings(false));
 
   return (
     <SettingsContext.Provider value={{ settings, setSettings }}>
