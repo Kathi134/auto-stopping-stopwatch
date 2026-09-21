@@ -93,9 +93,8 @@ h1 {
    --------------------------------------------------------- */
 
 select {
-    min-width: 260px;
-
     padding: 0.7rem 2.5rem 0.7rem 1rem;
+    margin: 0 1rem;
 
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -783,20 +782,4 @@ button:disabled {
 
 .theme-dark #toggle-btns .default:hover {
     color: #79b6c9;
-}
-
-
-/* ---------------------------------------------------------
-   Mobile
-   --------------------------------------------------------- */
-
-@media (max-width: 700px) {
-
-    .theme-dark .card {
-        background: rgba(30, 41, 59, 0.9);
-    }
-
-    .theme-dark table td {
-        border-color: #334155;
-    }
 }
