@@ -1,5 +1,4 @@
 import MODES from "../../model/modes";
-import { useState } from "react";
 
 export default function JudgeModeSelection({ startingTime, mode, setMode }) {
     return (

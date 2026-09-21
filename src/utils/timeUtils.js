@@ -13,7 +13,7 @@ function displayFromMillis(time) {
 }
 
 function displayFromMillisWithoutMillis(time) {
-    const { hours, minutes, seconds, milliseconds } = spreadFromMillis(time)
+    const { hours, minutes, seconds } = spreadFromMillis(time)
     return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 }
 
