@@ -13,6 +13,7 @@ const getCompetitorNextPuzzle = async ({ competitorId }) => {
 };
 
 const postCompetitionResult = async ({ competitorId, puzzleId, time }) => {
+    console.log("storing result on ", competitorId, "time", displayFromMillisWithoutMillis(time), "on puzzle", puzzleId)
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -27,4 +28,21 @@ const postCompetitionResult = async ({ competitorId, puzzleId, time }) => {
     return fetch(`${API}/results`, options);
 }
 
-export { postCompetitionResult, getCompetitorNextPuzzle };
+const postCompetitionPiecesResult = async ({ competitorId, puzzleId, pieces }) => {
+    console.log("storing result on ", competitorId, "pieces", pieces, "on puzzle", puzzleId)
+
+    const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            resultType: "pieces",
+            value: pieces,
+            competitorId,
+            puzzleId
+        })
+    };
+
+    return fetch(`${API}/results`, options);
+};
+
+export { postCompetitionResult, postCompetitionPiecesResult, getCompetitorNextPuzzle };

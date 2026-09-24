@@ -23,17 +23,21 @@ export default function PendingResultCard({
 
     return (
         <div className="vertical-container top-border">
+
             <div className="horizontal-container space-between">
                 <div className="horizontal-container gap-05">
                     <button className="adj-time-btn" onClick={decreaseTime}>-1s</button>
                     {displayFromMillis(result.time)}
                     <button className="adj-time-btn" onClick={increaseTime}>+1s</button>
                 </div>
-                {marathon
-                    ? <span className="thirdary-text">Bei Fehlteilen 5s warten, bevor das nächste Puzzle gegeben wird.</span>
-                    : <button className="adj-time-btn" disabled={true}>Fehlteil (+5s)</button>
-                }
+                <div>
+                    {marathon
+                        ? <span className="thirdary-text">Bei Fehlteilen 5s warten, erst dann das nächste Puzzle geben.</span>
+                        : <button className="adj-time-btn" disabled={true}>Fehlteil (+5s)</button>
+                    }
+                </div>
             </div>
+
             <div className="horizontal-container top-sdy-border">
                 <div className="horizontal-container gap-05">
                     <span>Tisch:</span>
@@ -41,6 +45,7 @@ export default function PendingResultCard({
                     <span className="competitor-name">{result.competitorName}</span>
                 </div>
             </div>
+
             <div className="horizontal-container top-sdy-border">
                 <div className="horizontal-container gap-05">
                     <span>Puzzle:</span>
@@ -51,6 +56,7 @@ export default function PendingResultCard({
                     }
                 </div>
             </div>
+
             <div className="horizontal-container top-sdy-border btn-column">
                 <button className="save-btn" disabled={result.table === undefinedTable} onClick={() => onSave(result.competitorId, result.time, result.position, result.id)}>💾</button>
                 <button className="delete-btn" onClick={() => onDelete(result.id)}>🗑️</button>

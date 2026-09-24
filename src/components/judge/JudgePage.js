@@ -9,6 +9,7 @@ import ToggleOptionsMenu from "../main/ToggleOptionsMenu";
 import { useSettings } from "../../context/SettingsContext";
 import PendingResultCard from "./PendingResultCard";
 import usePendingResults from "./usePendingResults";
+import ManualResults from "./ManualResults";
 
 const marathon = true;
 
@@ -86,11 +87,10 @@ export default function JudgePage({ foo }) {
             </div>
         </div>
 
-        <div className="center">
-            <div id="sub-header">Manuelle Ergebniseintragung:</div>
-            <div className="padded">
-                <button>Ergebnis hinzufügen</button>
-            </div>
-        </div>
+        <ManualResults
+            competitors={competitors}
+            puzzles={puzzles}
+            marathon={marathon}
+        />
     </div >)
 }

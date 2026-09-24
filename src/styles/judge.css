@@ -281,6 +281,10 @@ button:disabled {
     padding: 0.8rem 1rem;
 }
 
+.top-sdy-border.default-back {
+    background-color: white;
+}
+
 .top-sdy-border .horizontal-container {
     min-height: 38px;
 }
@@ -318,6 +322,10 @@ button:disabled {
     transition: border-color 0.2s ease,
         box-shadow 0.2s ease,
         background-color 0.2s ease;
+}
+
+.small-input.medium-wide {
+    width: 8rem;
 }
 
 
@@ -699,6 +707,10 @@ button:disabled {
     border-top-color: #334155;
 }
 
+.theme-dark .top-sdy-border.default-back {
+    background-color: #172235;
+    border-top-color: #334155;
+}
 
 /* ---------------------------------------------------------
    Labels

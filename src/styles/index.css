@@ -149,6 +149,11 @@ select {
   text-align: center;
 }
 
+.medium-input {
+  width: 6rem;
+  text-align: center;
+}
+
 .center {
   text-align: center;
   align-items: center;
@@ -168,4 +173,8 @@ select {
 
 .bottom-margin {
   margin-bottom: 2rem;
+}
+
+.top-margin {
+  margin-top: 1rem;
 }

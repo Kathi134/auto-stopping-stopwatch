@@ -9,6 +9,8 @@ const postCompetitionStart = ({ time, id }) => {
         })
     };
 
+    console.log("setting competition start", time)
+
     fetch(`${API}/competitions/${id}/startingTime`, options)
         // .then(response => response.json())
         .then(response => console.log(response))
