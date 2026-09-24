@@ -4,7 +4,7 @@ import ModeSelector from './ModeSelector';
 import { useMode } from "../../context/ModeContext";
 import { displayFromMillis } from '../../utils/timeUtils';
 import { useSettings } from "../../context/SettingsContext";
-import { postCompetitionStart } from "../../utils/api";
+import { postCompetitionStart } from "../../utils/api-competition";
 
 const states = { "running": 0, "finished": 1, "paused": 2, "zero": 3 }
 
