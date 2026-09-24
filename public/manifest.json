@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Event Judging",
+  "name": "Puzzle Event Judging Application",
   "icons": [
     {
       "src": "favicon.ico",

@@ -82,7 +82,7 @@ export default function usePendingResults(competitors, puzzles) {
                 };
             })
         );
-    }, [getCompetitorForTable]);
+    }, [getCompetitorForTable, puzzles]);
 
     // Change puzzle position
     const setPositionAtIdToValue = useCallback((id, value) => {

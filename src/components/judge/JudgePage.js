@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MODES from "../../model/modes";
 import { getCompetitonStart, getCompetititonData } from "../../utils/api-competition";
 import Timer from "./Timer";
